@@ -1,0 +1,341 @@
+{
+  "name": "Automatizador de postulaciones laborales",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Automatizador de Postulaciones Laborales",
+        "formDescription": "Ingresá los datos de una oferta laboral para analizar su compatibilidad con mi perfil.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Empresa"
+            },
+            {
+              "fieldLabel": "Puesto"
+            },
+            {
+              "fieldLabel": "Link de la oferta"
+            },
+            {
+              "fieldLabel": "Descripción de la oferta",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "719e9f21-e386-44d6-bdae-17459054fe96",
+      "name": "On form submission",
+      "webhookId": "574a4ae3-d3a8-4090-94a1-5a021c9a2c08"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c37f674e-383e-4972-a7e0-d7fede0d0358",
+              "name": "perfil_candidato",
+              "value": "Candidata recientemente graduada como Técnica Superior en Análisis de Sistemas.  Conocimientos: - SQL - Python - PHP - JavaScript - Bases de datos relacionales - MariaDB - APIs REST - Git - Excel - C# - C++ - Linux - Desarrollo web - Análisis y resolución de problemas  Experiencia en proyectos: - Desarrollo de APIs - Diseño y gestión de bases de datos - Desarrollo frontend - Desarrollo de aplicaciones - Procesamiento y análisis de datos  Objetivo: Buscar posiciones Junior relacionadas con análisis de datos, bases de datos, SQL, sistemas y tecnología.",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "8cc1a00b-8670-453e-99c4-88d1f35f153c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "const texto = $json.output;\n\nif (!texto) {\n  throw new Error(\"El AI Agent no devolvió ningún texto\");\n}\n\nconst analisis = JSON.parse(texto);\n\nreturn {\n  json: {\n    ...$json,\n    ...analisis\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        32
+      ],
+      "id": "45a0db42-871b-4900-a385-30437bc09f5b",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1aAB0enma2WGzMWMb3G7o6gEGCBrr_-3OWrtDa8rA_K0",
+          "mode": "list",
+          "cachedResultName": "Postulaciones IT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aAB0enma2WGzMWMb3G7o6gEGCBrr_-3OWrtDa8rA_K0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aAB0enma2WGzMWMb3G7o6gEGCBrr_-3OWrtDa8rA_K0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Puesto",
+              "displayName": "Puesto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Compatibilidad",
+              "displayName": "Compatibilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fortalezas",
+              "displayName": "Fortalezas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Faltantes",
+              "displayName": "Faltantes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Recomendación",
+              "displayName": "Recomendación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Motivo",
+              "displayName": "Motivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Análisis IA",
+              "displayName": "Análisis IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        32
+      ],
+      "id": "928d2017-0eda-4ef8-9a99-e85e877212c3",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "okG8AOemM2SxPakG",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analizá la siguiente oferta laboral utilizando el perfil de la candidata.\n\nEmpresa:\n{{ $json.Empresa }}\n\nPuesto:\n{{ $json.Puesto }}\n\nDescripción de la oferta:\n{{ $json[\"Descripción de la oferta\"] }}\n\nPerfil de la candidata:\n{{ $json.perfil_candidato }}\n\nAnalizá cuidadosamente:\n\n1. Los conocimientos y habilidades técnicas requeridos.\n2. Los conocimientos y habilidades que posee la candidata.\n3. Los años de experiencia solicitados.\n4. Si el puesto es Junior, Trainee, SSR o SR.\n5. Los requisitos excluyentes.\n6. Idioma, ubicación, modalidad de trabajo y disponibilidad para viajar.\n\nNo inventes conocimientos, experiencia ni certificaciones que la candidata no tenga.\n\nCalculá un porcentaje de compatibilidad entre 0 y 100.\n\nRespondé ÚNICAMENTE con un JSON válido.\nNO agregues explicaciones antes ni después del JSON.\nNO uses markdown.\nNO escribas frases como \"Este es el análisis\".\n\nUtilizá exactamente esta estructura:\n\n{\n  \"compatibilidad\": 85,\n  \"fortalezas\": [\n    \"SQL\",\n    \"Python\"\n  ],\n  \"faltantes\": [\n    \"Power BI\"\n  ],\n  \"requisitos_excluyentes\": [],\n  \"recomendacion\": \"POSTULARSE\",\n  \"motivo\": \"La candidata cumple con la mayoría de los requisitos del puesto y la posición es adecuada para su perfil junior.\"\n}\n\nReglas:\n- \"compatibilidad\" debe ser un número entero entre 0 y 100.\n- \"fortalezas\" debe ser un array de textos.\n- \"faltantes\" debe ser un array de textos.\n- \"requisitos_excluyentes\" debe ser un array de textos.\n- \"recomendacion\" debe ser únicamente \"POSTULARSE\" o \"NO POSTULARSE\".\n- \"motivo\" debe ser un texto breve.\n- Si no hay faltantes, usar [].\n- Si no hay requisitos excluyentes, usar [].",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "790d2567-3f1a-4793-b2b5-133bfe049c81",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        208
+      ],
+      "id": "38480817-3b35-42a3-8346-dd57c743ca21",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "U9tcvz3EEYNz9drY",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        592,
+        192
+      ],
+      "id": "325ad1d6-eb3a-47b5-952e-8ee30ac23fc0",
+      "name": "Calculator"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        []
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d34afa52-4465-4e47-aaf1-8a3e4c584db0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3c22c8535f3d226e215b5231bf70fd3035a278f831e223239b240fe1909098f8"
+  },
+  "nodeGroups": [],
+  "id": "ZsHV1Azr69VFBEse",
+  "tags": []
+}
